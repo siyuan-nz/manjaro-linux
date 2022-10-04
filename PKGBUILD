@@ -59,6 +59,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         #'4007-ASoC-codec-es8316-DAC-Soft-Ramp-Rate-is-just-a-2-bit-control.patch'
         #'4008-arm64-dts-rk3399-pinebook-pro-Fix-codec-frequency-after-boot.patch'
         #'4009-arm64-dts-rockchip-rk3399-pinebook-pro-Fix-VDO-display-output.patch'
+        'board-pbp-add-dp-alt-mode.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -96,6 +97,7 @@ md5sums=('3bfdd172c1aa5c5f1bbba34486cc720f'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          'e8ea5b4f0937c3799a846991a9259b4b'
+         '4acefa1ad2382414148d7190f12bdea7'
          '0e0868e48e3761ace7788c49195ba93d'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
@@ -126,6 +128,8 @@ prepare() {
 
   # Pinebook Pro patches by Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.2
   apply_patches 4
+
+  patch -N -p1 < ../board-pbp-add-dp-alt-mode.patch
 
   # Apply our kernel configuration
   cat "${srcdir}/config" > .config
