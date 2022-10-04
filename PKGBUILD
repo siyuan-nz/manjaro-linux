@@ -51,6 +51,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         #'4007-ASoC-codec-es8316-DAC-Soft-Ramp-Rate-is-just-a-2-bit-control.patch'
         #'4008-arm64-dts-rk3399-pinebook-pro-Fix-codec-frequency-after-boot.patch'
         #'4009-arm64-dts-rockchip-rk3399-pinebook-pro-Fix-VDO-display-output.patch'
+        'board-pbp-add-dp-alt-mode.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -72,6 +73,7 @@ md5sums=('0323da8de9d6aaa017b20d403cc3505a'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
+         '0878faebe3d5cc4b485f5ab76a11bbb6'
          '91e9adf8e7513fc41cfc4e109882397b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
@@ -96,12 +98,14 @@ prepare() {
 
   # Assorted Pinebook, PinePhone and PineTab patches
   apply_patches 2
-  
+
   # Assorted rk356x patches
   apply_patches 3
 
   # Pinebook Pro patches by Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.2
   # apply_patches 4
+
+  patch -N -p1 < ../board-pbp-add-dp-alt-mode.patch
 
   # Apply our kernel configuration
   cat "${srcdir}/config" > .config
@@ -244,7 +248,7 @@ _package-headers() {
 
   install -Dt "${_builddir}/arch/${KARCH}" -m644 arch/${KARCH}/Makefile
   install -Dt "${_builddir}/arch/${KARCH}/kernel" -m644 arch/${KARCH}/kernel/asm-offsets.s
-  install -Dt "${_builddir}" -m644 vmlinux 
+  install -Dt "${_builddir}" -m644 vmlinux
 
   cp -t "${_builddir}/arch/${KARCH}" -a arch/${KARCH}/include
   mkdir -p "${_builddir}/arch/arm"
@@ -295,7 +299,7 @@ _package-headers() {
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
   ${CROSS_COMPILE}strip $STRIP_STATIC "${_builddir}/vmlinux"
-  
+
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
 }
