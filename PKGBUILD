@@ -116,6 +116,13 @@ prepare() {
 build() {
   cd ${_srcname}
 
+  export CFLAGS="-march=armv8-a -O2 -pipe -fstack-protector-strong -fno-plt -fexceptions \
+          -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
+          -fstack-clash-protection"
+  export LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+  export ARCH="arm64"
+  export CROSS_COMPILE="aarch64-linux-gnu-"
+
   # Get the kernel version
   if [[ "${_newversion}" = false ]]; then
     make prepare
@@ -128,7 +135,7 @@ build() {
   fi
   #make nconfig       # New CLI menu for configuration
   #make xconfig       # X-based configuration
-  #make oldconfig     # Using old config from previous kernel version
+  make oldconfig     # Using old config from previous kernel version
 
   # Stash the configuration (use with new major kernel version)
   if [[ "${_newversion}" = true ]]; then
@@ -217,7 +224,15 @@ _package-headers() {
   conflicts=('linux-headers')
   replaces=('linux-aarch64-headers')
 
+  export CFLAGS="-march=armv8-a -O2 -pipe -fstack-protector-strong -fno-plt -fexceptions \
+          -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
+          -fstack-clash-protection"
+  export LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+  export ARCH="arm64"
+  export CROSS_COMPILE="aarch64-linux-gnu-"
+
   cd ${_srcname}
+
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
@@ -270,16 +285,16 @@ _package-headers() {
   while read -rd '' file; do
     case "$(file -bi "$file")" in
       application/x-sharedlib\;*)      # Libraries (.so)
-        strip $STRIP_SHARED "$file" ;;
+        ${CROSS_COMPILE}strip $STRIP_SHARED "$file" ;;
       application/x-archive\;*)        # Libraries (.a)
-        strip $STRIP_STATIC "$file" ;;
+        ${CROSS_COMPILE}strip $STRIP_STATIC "$file" ;;
       application/x-executable\;*)     # Binaries
-        strip $STRIP_BINARIES "$file" ;;
+        ${CROSS_COMPILE}strip $STRIP_BINARIES "$file" ;;
       application/x-pie-executable\;*) # Relocatable binaries
-        strip $STRIP_SHARED "$file" ;;
+        ${CROSS_COMPILE}strip $STRIP_SHARED "$file" ;;
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
-  strip $STRIP_STATIC "${_builddir}/vmlinux"
+  ${CROSS_COMPILE}strip $STRIP_STATIC "${_builddir}/vmlinux"
   
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
