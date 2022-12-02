@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.0.10
+pkgver=6.0.11
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -68,7 +68,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('dede690733903e1ea5290010bb6e37c2'
+md5sums=('7a47796e842b77519613abbca6037c91'
          '9aa0591c2d601a104d664a802a44728c'
          'e6fe272dc95a1c0a8f871924699fea16'
          '9f27b2a05eaeb1995fc0fcf6a8b923c4'
@@ -116,7 +116,7 @@ md5sums=('dede690733903e1ea5290010bb6e37c2'
          'b241ca1a4566d37bd29cde8db238762d'
          'e8ea5b4f0937c3799a846991a9259b4b'
          '4f81752a97ad44f42d6f3177acf19928'
-         '4be7477d34765b9fff0c756456bbd5c2'
+         'c0f9efe7a383959497bbcc2d9c9e9852'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
