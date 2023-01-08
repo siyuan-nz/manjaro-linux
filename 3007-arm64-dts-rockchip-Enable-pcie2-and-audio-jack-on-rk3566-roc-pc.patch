@@ -141,47 +141,8 @@ index dba648c2f..1e5c83012 100644
  	sdio_pwrseq: sdio-pwrseq {
  		status = "okay";
  		compatible = "mmc-pwrseq-simple";
-@@ -82,6 +120,18 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 		vin-supply = <&usb_5v>;
- 	};
- 
-+	vcc3v3_pcie: vcc3v3-pcie-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pcie_enable_h>;
-+		regulator-name = "vcc3v3_pcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc3v3_sys: vcc3v3-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_sys";
-@@ -122,6 +172,10 @@ &combphy1 {
- 	status = "okay";
- };
- 
-+&combphy2 {
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&vdd_cpu>;
- };
-@@ -142,7 +196,7 @@ &gmac1 {
- 	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>;
- 	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>, <&gmac1_clkin>;
- 	clock_in_out = "input";
--	phy-mode = "rgmii-id";
-+	phy-mode = "rgmii";
- 	phy-supply = <&vcc_3v3>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&gmac1m0_miim
-@@ -210,9 +264,13 @@ rk809: pmic@20 {
- 		interrupt-parent = <&gpio0>;
+@@ -210,9 +264,13 @@ rk809: pmic@20 { 
+		interrupt-parent = <&gpio0>;
  		interrupts = <RK_PA7 IRQ_TYPE_LEVEL_LOW>;
  		clock-output-names = "rk808-clkout1", "rk808-clkout2";
 -
@@ -206,58 +167,21 @@ index dba648c2f..1e5c83012 100644
 +		};
  	};
  };
- 
-@@ -432,11 +494,20 @@ &i2c2 {
- 
- &i2c3 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&i2c3m1_xfer>;
-+	pinctrl-0 = <&i2c3m0_xfer>;
- 	status = "okay";
+
+@@ -498,6 +498,15 @@
+        status = "okay";
  };
  
- &i2c5 {
-+	status = "disabled";
-+};
-+
 +&i2s0_8ch {
-+	status = "okay";
++       status = "okay";
 +};
 +
 +&i2s1_8ch {
-+	rockchip,trcm-sync-tx-only;
- 	status = "okay";
- };
- 
-@@ -447,6 +518,14 @@ rgmii_phy1: ethernet-phy@0 {
- 	};
- };
- 
-+&pcie2x1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_reset_h>;
-+	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	status = "okay";
++       rockchip,trcm-sync-tx-only;
++       status = "okay";
 +};
 +
- &pinctrl {
- 	bt {
- 		bt_enable_h: bt-enable-h {
-@@ -468,6 +547,16 @@ user_led_enable_h: user-led-enable-h {
- 		};
- 	};
+ &mdio1 {
+        rgmii_phy1: ethernet-phy@0 {
+                compatible = "ethernet-phy-ieee802.3-c22"; 
  
-+	pcie {
-+		pcie_enable_h: pcie-enable-h {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie_reset_h: pcie-reset-h {
-+			rockchip,pins = <1 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int: pmic_int {
- 			rockchip,pins =
