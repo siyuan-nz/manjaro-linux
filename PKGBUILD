@@ -4,8 +4,8 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.1.4
-pkgrel=3
+pkgver=6.1.5
+pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -45,7 +45,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '3004-arm64-dts-rockchip-rk356x-update-pcie-io-ranges.patch'               # From https://github.com/neggles/linux-quartz64/commit/2c1e3811e6d7430f7d46dbb01d3773192c51cdcf (by Neggles)
         '3005-arm64-dts-rockchip-Add-Quartz64-B-eeprom.patch'
         '3006-Misc-SOQuartz-Enablement.patch'                                      # From list: https://patchwork.kernel.org/project/linux-rockchip/cover/20221112160404.70868-1-frattaroli.nicolas@gmail.com/ (applied in linux-next)
-        '3007-arm64-dts-rockchip-Enable-pcie2-and-audio-jack-on-rk3566-roc-pc.patch'  # Station M2; (by Furkan) (parts applied in linux-next) (needs to be redone for 6.1 changes)
+        '3007-arm64-dts-rockchip-Enable-pcie2-and-audio-jack-on-rk3566-roc-pc.patch'  # Station M2; (by Furkan) (parts applied in linux-next)
         '3008-drm-panel-simple-Add-init-sequence-support.patch'                    # (may not be needed)
         '3009-arm64-dts-rockchip-Move-Quartz64-A-to-mdio-setup.patch'
         '3010-arm64-dts-rockchip-Add-Quartz64-A-battery-node.patch'
@@ -54,7 +54,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('eca0790baeaecee3a6ac18a5a42809aa'
+md5sums=('8e954f890f32917863ebf1fe159f1ae5'
          'e6fe272dc95a1c0a8f871924699fea16'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
