@@ -5,7 +5,7 @@
 
 pkgbase=linux
 pkgver=6.1.6
-pkgrel=1
+pkgrel=2
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -35,7 +35,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1016-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
         '1017-arm64-dts-rockchip-add-OrangePi-4-LTS.patch'                         # Orange Pi 4 LTS (by Furkan)
         '1018-Add-YT8531C-phy-support.patch'                                       # Motorcomm PHY (by Furkan)
-        '1019-Revert-mmc-meson-gx-add-SDIO-interrupt-support.patch'                # AMlogic wifi temp fix
+        '1019-Revert-mmc-meson-gx-add-SDIO-interrupt-support.patch'                # GT King wifi temp fix
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
         #'2002-brcmfmac-USB-probing-provides-no-board-type.patch'                   # Bluetooth;  Will be submitted upstream by Dragan (needs to be redone for 6.1)
         '2003-arm64-dts-rockchip-Work-around-daughterboard-issues.patch'           # Pinebook Pro microSD;  Will be submitted upstream by Dragan
