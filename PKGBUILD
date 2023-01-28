@@ -5,7 +5,7 @@
 
 pkgbase=linux
 pkgver=6.1.8
-pkgrel=2
+pkgrel=3
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
@@ -52,6 +52,14 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '3010-arm64-dts-rockchip-Add-Quartz64-A-battery-node.patch'
         '3011-board-rock3a-gmac1.patch'                                            # RK356X and associated patches that are still being upstreamed: END Rock 3A; From Armbian: https://github.com/armbian/build/blob/master/patch/kernel/archive/rockchip64-5.19/board-rock3a-gmac1.patch
         '3012-arm64-dts-rockchip-set-sdmmc0-speed-to-sd-uhs-sdr50.patch'           # Rock 3A; fix SD card boot
+        '4001-arm64-dts-rk3399-pinebook-pro-Fix-USB-PD-charging.patch'             # Pinebook Pro series from Megi START
+        '4002-arm64-dts-rk3399-pinebook-pro-Improve-Type-C-support-on-Pinebook-Pro.patch'
+        '4003-arm64-dts-rk3399-pinebook-pro-Remove-redundant-pinctrl-properties-from-edp.patch'
+        '4004-arm64-dts-rk3399-pinebook-pro-Remove-unused-features.patch'
+        '4005-arm64-dts-rk3399-pinebook-pro-Dont-allow-usb2-phy-driver-to-update-USB-role.patch'
+        '4006-arm64-dts-rockchip-rk3399-pinebook-pro-Support-both-Type-C-plug-orientations.patch'
+        '4007-ASoC-codec-es8316-DAC-Soft-Ramp-Rate-is-just-a-2-bit-control.patch'
+        '4008-arm64-dts-rk3399-pinebook-pro-Fix-codec-frequency-after-boot.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -91,7 +99,15 @@ md5sums=('c201fad8846646a21161a1a3fb39fbf5'
          'fa9babdfffadf76454b00fc22593eaba'
          'e8ea5b4f0937c3799a846991a9259b4b'
          '2db129cb881352909edbae5ea0a49b5e'
-         '55aa37794b62452df67a77deccd5952c'
+         'ba1b0cf1e39e16e5a15231e7b3553d70'
+         '46944b5150f32217fb10d6381d54745d'
+         'fdac5c276e292c86d72bd2a1e5ddfa53'
+         '61c47be1d3f881b72aa29ea56edfcd4b'
+         '4fa901162aa33a662ab5349669380e57'
+         'bddd1c777fb1cf061bd0ba8aefa5d0e6'
+         '30fbb84588623871ffa348842ee016a2'
+         '892fff57098cb5993a365b92267e1d96'
+         'e7c63db0cb4837fbd6c0f87fac6b1c4b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
@@ -118,6 +134,9 @@ prepare() {
   
   # Assorted rk356x patches
   apply_patches 3
+
+  # Pinebook Pro patches by Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.1
+  apply_patches 4
 
   # Apply our kernel configuration
   cat "${srcdir}/config" > .config
