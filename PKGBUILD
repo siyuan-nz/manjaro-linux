@@ -52,7 +52,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '3010-arm64-dts-rockchip-Add-Quartz64-A-battery-node.patch'
         '3011-board-rock3a-gmac1.patch'                                            # RK356X and associated patches that are still being upstreamed: END Rock 3A; From Armbian: https://github.com/armbian/build/blob/master/patch/kernel/archive/rockchip64-5.19/board-rock3a-gmac1.patch
         '3012-arm64-dts-rockchip-set-sdmmc0-speed-to-sd-uhs-sdr50.patch'           # Rock 3A; fix SD card boot
-        '4001-arm64-dts-rk3399-pinebook-pro-Fix-USB-PD-charging.patch'             # Pinebook Pro series from Megi START
+        '4001-arm64-dts-rk3399-pinebook-pro-Fix-USB-PD-charging.patch'             # Pinebook Pro series from Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.2
         '4002-arm64-dts-rk3399-pinebook-pro-Improve-Type-C-support-on-Pinebook-Pro.patch'
         '4003-arm64-dts-rk3399-pinebook-pro-Remove-redundant-pinctrl-properties-from-edp.patch'
         '4004-arm64-dts-rk3399-pinebook-pro-Remove-unused-features.patch'
@@ -60,6 +60,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '4006-arm64-dts-rockchip-rk3399-pinebook-pro-Support-both-Type-C-plug-orientations.patch'
         '4007-ASoC-codec-es8316-DAC-Soft-Ramp-Rate-is-just-a-2-bit-control.patch'
         '4008-arm64-dts-rk3399-pinebook-pro-Fix-codec-frequency-after-boot.patch'
+        '4009-arm64-dts-rockchip-rk3399-pinebook-pro-Fix-VDO-display-output.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -107,6 +108,7 @@ md5sums=('c201fad8846646a21161a1a3fb39fbf5'
          'bddd1c777fb1cf061bd0ba8aefa5d0e6'
          '30fbb84588623871ffa348842ee016a2'
          '892fff57098cb5993a365b92267e1d96'
+         '09c231ea7c1800cdad5b042c2ccc62f2'
          'e7c63db0cb4837fbd6c0f87fac6b1c4b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
@@ -135,7 +137,7 @@ prepare() {
   # Assorted rk356x patches
   apply_patches 3
 
-  # Pinebook Pro patches by Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.1
+  # Pinebook Pro patches by Megi: https://github.com/torvalds/linux/compare/master...megous:linux:pbp-6.2
   apply_patches 4
 
   # Apply our kernel configuration
