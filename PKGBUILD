@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.2.10
+pkgver=6.2.11
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -28,7 +28,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1009-arm64-dts-rockchip-Add-PCIe-bus-scan-delay-to-Rock-P.patch'          # Radxa Rock Pi 4 (relies on patch 1005)
         '1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan)
         '1011-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
-        '1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues
+        #'1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues added in 6.2.11
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
         '2003-arm64-dts-rockchip-Work-around-daughterboard-issues.patch'           # Pinebook Pro microSD;  Will be submitted upstream by Dragan
         '2004-arm64-dts-allwinner-add-hdmi-sound-to-pine-devices.patch'            # Allwinner HDMI Sound; (by Dan)
@@ -55,7 +55,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('f53c9e3a3f0dd88de6c475536b4d3e16'
+md5sums=('78d3ab3a52fe283aabca27dad4005d07'
          'e6fe272dc95a1c0a8f871924699fea16'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
@@ -67,7 +67,6 @@ md5sums=('f53c9e3a3f0dd88de6c475536b4d3e16'
          'a0cf3209d3f856522ef14c4618837ae7'
          '206dadb349d169d5ba226c291fd05430'
          'e9377e7295ebd76cc68b9dd42891c0c8'
-         'f63789868cfed98d49602162059d690c'
          '3cb7e8c18b920bb49ff1e51e92732db2'
          '59c20ef6082f4b4c6b54c4f532931ff4'
          '9aa0591c2d601a104d664a802a44728c'
@@ -81,7 +80,7 @@ md5sums=('f53c9e3a3f0dd88de6c475536b4d3e16'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
          '9613e1d890f44f405b6227fe0dcd8f7d'
-         'e94005e055e71a12fe7b6e85532ae759'
+         '3ca691473ec8311b2d9693b91dceb032'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
