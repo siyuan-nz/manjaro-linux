@@ -29,7 +29,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         #'1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
         '1011-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
         #'1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues added in 6.2.11
-        '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable
+        #'2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update
 	#'2003-arm64-dts-rockchip-Work-around-daughterboard-issues.patch'           # Pinebook Pro microSD;  Will be submitted upstream by Dragan - Failed to apply on 6.3, already present.
         '2004-arm64-dts-allwinner-add-hdmi-sound-to-pine-devices.patch'            # Allwinner HDMI Sound; (by Dan)
         '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'
@@ -66,7 +66,6 @@ md5sums=('646d9e1f4f62d01f53dc2fd6b4ea9005'
          'a0f649f78c857a01e1680b89b58b05eb'
          'a0cf3209d3f856522ef14c4618837ae7'
          'e9377e7295ebd76cc68b9dd42891c0c8'
-         '3cb7e8c18b920bb49ff1e51e92732db2'
          '9aa0591c2d601a104d664a802a44728c'
          'a829e0d4711d8feff5fee1973938b25a'
          '467b3ff965db6867f4289f5d256ca93e'
