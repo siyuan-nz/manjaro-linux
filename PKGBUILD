@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.3.7
+pkgver=6.3.8
 pkgrel=1
 _newversion=false
 _stopbuild=false     # Will also stop if ${_newversion} is true
@@ -26,7 +26,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1007-arm64-dts-rockchip-Add-PCIe-bus-scan-delay-to-RockPr.patch'          # RockPro64 (relies on patch 1005)
         '1008-arm64-dts-rockchip-switch-to-hs200-on-rockpi4.patch'                 # Radxa Rock Pi 4;  Temporary hotfix, not for upstreaming (by Dragan)
         '1009-arm64-dts-rockchip-Add-PCIe-bus-scan-delay-to-Rock-P.patch'          # Radxa Rock Pi 4 (relies on patch 1005)
-        #'1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
+        '1010-arm64-dts-rockchip-add-rk3568-station-p2.patch'                      # Firefly Station P2 (by Furkan) - Failed to Apply on 6.3
         '1011-arm64-dts-meson-radxa-zero-add-support-for-the-usb-t.patch'          # Radxa Zero (by Furkan)
         #'1012-pwm-meson-Explicitly-set-.polarity-in-.get_state.patch'              # Meson; Temp fix for boot issues added in 6.2.11
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update
@@ -55,7 +55,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('37eb97ea978be9a10ffa87dcdf127312'
+md5sums=('237a5269575160fed17c7f55d93cc46c'
          'e6fe272dc95a1c0a8f871924699fea16'
          '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
@@ -65,6 +65,7 @@ md5sums=('37eb97ea978be9a10ffa87dcdf127312'
          '28982d87c45ed8f5aab966d82f8455d8'
          'a0f649f78c857a01e1680b89b58b05eb'
          'a0cf3209d3f856522ef14c4618837ae7'
+         'a962b5154197121c3e38024b367eb5e6'
          'e9377e7295ebd76cc68b9dd42891c0c8'
          '8106acb11c4784255c5a6b84efee537e'
          '9aa0591c2d601a104d664a802a44728c'
