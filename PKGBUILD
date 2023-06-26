@@ -4,10 +4,10 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.3.9
+pkgver=6.4.0
 pkgrel=1
 _newversion=false
-_stopbuild=false     # Will also stop if ${_newversion} is true
+_stopbuild=flase     # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
 _kernelname="${pkgbase#linux}"
 _desc="AArch64 multi-platform"
@@ -18,7 +18,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '1001-arm64-dts-allwinner-add-ohci-ehci-to-h5-nanopi.patch'                # Nanopi Neo Plus 2 (by Furkan?)
-        '1002-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable
+        #'1002-gpu-drm-add-new-display-resolution-2560x1440.patch'                  # Odroid;  Not upstreamable Does not apply in 6.4
         '1003-panfrost-Silence-Panfrost-gem-shrinker-loggin.patch'                 # Panfrost (preference patch, might not be upstreamable)
         '1004-arm64-dts-rockchip-Add-Firefly-Station-p1-support.patch'             # Firefly Station P1 (by Furkan)
         '1005-rk3399-rp64-pcie-Reimplement-rockchip-PCIe-bus-scan-delay.patch'     # RockPro64 (by @nuumio, perhaps upstreamable?)
@@ -32,16 +32,16 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '2001-staging-add-rtl8723cs-driver.patch'                                  # Realtek WiFi;  Not upstreamable Failed to compile on 6.3 - Need to Update
 	#'2003-arm64-dts-rockchip-Work-around-daughterboard-issues.patch'           # Pinebook Pro microSD;  Will be submitted upstream by Dragan - Failed to apply on 6.3, already present.
         '2004-arm64-dts-allwinner-add-hdmi-sound-to-pine-devices.patch'            # Allwinner HDMI Sound; (by Dan)
-        '3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch'
+        #'3001-irqchip-gic-v3-add-hackaround-for-rk3568-its.patch' 		# Failed to apply on 6.4
         #'3002-arm64-dts-rockchip-Lower-sd-speed-on-soquartz.patch'		# Failed to apply on 6.3
         '3003-arm64-dts-rockchip-Add-hdmi-cec-assigned-clocks-to-r.patch'
-        '3004-arm64-dts-rockchip-rk356x-update-pcie-io-ranges.patch'               # From https://github.com/neggles/linux-quartz64/commit/2c1e3811e6d7430f7d46dbb01d3773192c51cdcf (by Neggles)
+        #'3004-arm64-dts-rockchip-rk356x-update-pcie-io-ranges.patch'               # From https://github.com/neggles/linux-quartz64/commit/2c1e3811e6d7430f7d46dbb01d3773192c51cdcf (by Neggles) Applied already
         '3005-arm64-dts-rockchip-Add-Quartz64-B-eeprom.patch'
         #'3006-arm64-dts-rockchip-Enable-pcie2-and-audio-jack-on-rk3566-roc-pc.patch'  # Station M2; (by Furkan) (applied in linux-next) - Failed to apply on 6.3
         '3007-arm64-dts-rockchip-Move-Quartz64-A-to-mdio-setup.patch'
         '3008-arm64-dts-rockchip-Add-Quartz64-A-battery-node.patch'
         '3009-board-rock3a-gmac1.patch'                                            # Rock 3A; Ethernet. Based on Armbian patch
-        '3010-drm-rockchip-dw_hdmi-Add-4k-30-support.patch'                        # Rockchip; from list: https://patchwork.kernel.org/project/linux-rockchip/list/?series=722440
+        #'3010-drm-rockchip-dw_hdmi-Add-4k-30-support.patch'                        # Rockchip; from list: https://patchwork.kernel.org/project/linux-rockchip/list/?series=722440 Failed to Apply on 6.4
         #'4001-arm64-dts-rk3399-pinebook-pro-Fix-USB-PD-charging.patch'             # Pinebook Pro series from Megi START
         #'4002-arm64-dts-rk3399-pinebook-pro-Improve-Type-C-support-on-Pinebook-Pro.patch'
         #'4003-arm64-dts-rk3399-pinebook-pro-Remove-redundant-pinctrl-properties-from-edp.patch'
@@ -55,9 +55,8 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('d4e45bcf3f0df8077d37eaa76e7cf307'
+md5sums=('bb65b2232cf596e7044c56a7c4205f51'
          'e6fe272dc95a1c0a8f871924699fea16'
-         '6f592c11f6adc1de0f06e5d18f8c2862'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
          '245858f26512dfc48adbf509b6fc8364'
@@ -69,15 +68,12 @@ md5sums=('d4e45bcf3f0df8077d37eaa76e7cf307'
          'e9377e7295ebd76cc68b9dd42891c0c8'
          '8106acb11c4784255c5a6b84efee537e'
          '9aa0591c2d601a104d664a802a44728c'
-         'a829e0d4711d8feff5fee1973938b25a'
          '467b3ff965db6867f4289f5d256ca93e'
-         '080d29aed29a49fe3ef7953e816ea4f4'
          '56605685714f21646f88fbc187a4bf47'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
-         '9613e1d890f44f405b6227fe0dcd8f7d'
-         'e3576e123ca18199066119403fd78fd6'
+         '45772bce751480d447a04795d1e8f162'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
