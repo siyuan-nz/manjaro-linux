@@ -4,7 +4,7 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.4.0
+pkgver=6.4.2
 pkgrel=1
 _newversion=false
 _stopbuild=flase     # Will also stop if ${_newversion} is true
@@ -55,7 +55,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('bb65b2232cf596e7044c56a7c4205f51'
+md5sums=('2a26309aa4c775471caa3fe48eb83cf6'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
