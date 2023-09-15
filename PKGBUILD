@@ -4,10 +4,10 @@
 # Contributor: Dragan Simic <dsimic@buserror.io>
 
 pkgbase=linux
-pkgver=6.4.13
+pkgver=6.5.3
 pkgrel=1
 _newversion=false
-_stopbuild=flase     # Will also stop if ${_newversion} is true
+_stopbuild=false     # Will also stop if ${_newversion} is true
 _srcname="linux-${pkgver/%.0/}"
 _kernelname="${pkgbase#linux}"
 _desc="AArch64 multi-platform"
@@ -55,7 +55,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('1ce0b1d43fb27f7171a49a9e539d291f'
+md5sums=('c54b2cd13ba845e2f5a667ce712e92b9'
          'e6fe272dc95a1c0a8f871924699fea16'
          'f8f0b124c741be61d86bea8d44e875f9'
          '564136ab1c75b6dc67be02b54e695ae5'
@@ -72,7 +72,7 @@ md5sums=('1ce0b1d43fb27f7171a49a9e539d291f'
          '61ed22ed1254727bd97902ce849d3df4'
          'fa9babdfffadf76454b00fc22593eaba'
          '8fb62d56ea03359cf3999564e3dab15f'
-         '45772bce751480d447a04795d1e8f162'
+         '91e9adf8e7513fc41cfc4e109882397b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
